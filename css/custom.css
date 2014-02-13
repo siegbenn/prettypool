@@ -1,7 +1,9 @@
 body {
-    background: #F2EDE0;
+    background: #d8d8d8;
 }
 
-.container {
-    width:1170px;
+
+hr
+{
+  border-color: #123455;
 }

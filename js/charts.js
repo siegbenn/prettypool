@@ -30,7 +30,8 @@ var draw= function(hashrate, doarate) {
     },
     plotOptions: {
       areaspline: {
-        fillColor: '#ace',
+        fillColor: '#87af75',
+        color: '#87af75',
         marker: { enabled: false },
         lineWidth: 1,
         shadow: false,

@@ -9,7 +9,7 @@
     <meta content="" name="author">
     <link href="../../docs-assets/ico/favicon.png" rel="shortcut icon">
 
-    <title>Potato Pool (DOGE) - US East Node</title>
+    <title>Vertmine - P2Pool (US East Node)</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">    
@@ -21,6 +21,7 @@
     <script src="js/util.js"></script>
     <script src="js/charts.js"></script>
 </head>
+<body>
 <!-- Static navbar -->
     <div class="navbar navbar-inverse navbar-static-top" role="navigation">
       <div class="container">
@@ -31,7 +32,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Potato Pool</a>
+          <a class="navbar-brand" href="#">Vertmine</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -42,7 +43,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown active">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dogecoin<b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vertcoin<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#">US East</a></li>
               </ul>
@@ -51,11 +52,10 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-<body class="text-center">
     <div class="container">
         <div class="page-header text-center">
 	    <img src="img/vertcoin.png" style="width:100px;height:100px;">
-            <h2>Dogecoin  - US East Node</h2><b><small>Updated: <span id='updated'></span></small></b>
+            <h2>Vertmine - US East Node</h2><b><small>Updated: <span id='updated'></span></small></b>
         </div><!-- Alerts -->
 
         <div class="alert alert-danger hidden" id='node_alerts'></div>
@@ -70,105 +70,176 @@
 	    </center>
         </div><br>
         <br>
-
+</div>
         <div id='chart'></div>
-        <hr>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    
-<div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Mining Status</h3>
-            </div>
-
-            <div class="panel-body">
-
-                        <p>Local Rate: <span id='local_rate'></span></p>
-
-                        <p>Global Rate: <span id='global_rate'></span></p>
-
-                        <p>Share Difficulty: <span id='share_difficulty'></span></p>
-
-                        <p>Shares: <span id='shares'></span></p>
-
-                        <p>Expected Time to Share: <span id='expected_time_to_share'></span></p>
-
-                        <p>Expected Time to Block: <span id='expected_time_to_block'></span></p>
-
-                        <p>Current Block Value: <span id='block_value'></span></p>
-                    </div></div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Node Status</h3>
-            </div>
-
-            <div class="panel-body">
-                        
-
-                        <p>Node Peers: <i class='fa fa-sign-in fa-fw'></i><span id='peers_in'></span> / <i class='fa fa-sign-out fa-fw'></i><span id='peers_out'></span></p>
-
-                        <p>Node Uptime: <span id='node_uptime'></span></p>
-
-                        <p>Node P2Pool Version: <span id='p2pool_version'></span></p>
-
-                        <p>Protocol Version: <span id='protocol_version'></span></p>
-
-                        <p>Node Fee: <span id='node_fee'></span></p>
-
-                        <p>Node Donation: <span id='node_donation'></span></p>
-<p>Wow Such Node: True</p>
-                    </div></div>
-                </div>
-            </div>
-        </div><br>
         
 <div class="container">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Active Miners</h3>
+        <div class="row">
+            <!-- Start Row -->
+            <br>
+
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Mining Status</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <th>Local Rate</th>
+
+                                <td><span id='local_rate'></span></td>
+                            </tr>
+
+                            <tr>
+                                <th>Global Rate</th>
+
+                                <td><span id='global_rate'></span></td>
+                            </tr>
+
+                            <tr>
+                                <th>Share Difficulty</th>
+
+                                <td><span id='share_difficulty'></span></td>
+                            </tr>
+
+                            <tr>
+                                <th>Shares</th>
+
+                                <td><span id='shares'></span></td>
+                            </tr>
+
+                            <tr>
+                                <th>Expected Time to Share</th>
+
+                                <td><span id=
+                                'expected_time_to_share'></span></td>
+                            </tr>
+
+                            <tr>
+                                <th>Expected Time to Block</th>
+
+                                <td><span id=
+                                'expected_time_to_block'></span></td>
+                            </tr>
+
+                            <tr>
+                                <th>Current Block Value</th>
+
+                                <td><span id='block_value'></span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
 
-            <div class="panel-body">
-                <table class="table text-center" id='active_miners'>
-                    <tr>
-                        <th class="text-left">Bitcoin Address</th>
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Node Status</h3>
+                    </div>
 
-                        <th class="text-left">Hashrate</th>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <th>Node Peers</th>
 
-                        <th class="text-left">DOA Hashrate</th>
+                                <td><span id='peers_in'></span> / <span id=
+                                'peers_out'></span></td>
+                            </tr>
 
-                        <th class="text-left">DOA %</th>
+                            <tr>
+                                <th>Node Uptime</th>
 
-                        <th class="text-left">Predicted payout</th>
-                    </tr>
-                </table>
+                                <td><span id='node_uptime'></span></td>
+                            </tr>
+
+                            <tr>
+                                <th>Node P2Pool Version</th>
+
+                                <td><span id='p2pool_version'></span></td>
+                            </tr>
+
+                            <tr>
+                                <th>Protocol Version</th>
+
+                                <td><span id='protocol_version'></span></td>
+                            </tr>
+
+                            <tr>
+                                <th>Node Fee</th>
+
+                                <td><span id='node_fee'></span></td>
+                            </tr>
+
+                            <tr>
+                                <th>Node Donation</th>
+
+                                <td><span id='node_donation'></span></td>
+                            </tr>
+
+                            <tr>
+                                <th>Mining Vertcoin:</th>
+
+                                <td>True</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Row -->
+        <br>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Active Miners</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <table class="table text-center" id='active_miners'>
+                            <tr>
+                                <th class="text-left">Bitcoin Address</th>
+
+                                <th class="text-left">Hashrate</th>
+
+                                <th class="text-left">DOA Hashrate</th>
+
+                                <th class="text-left">DOA %</th>
+
+                                <th class="text-left">Predicted payout</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div><br>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Recent blocks</h3>
-            </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Recent blocks</h3>
+                    </div>
 
-            <div class="panel-body">
-                <table class="table tabel-hover text-left" id='recent_blocks'>
-                    <tr>
-                        <th class="text-left">Date/Time</th>
+                    <div class="panel-body">
+                        <table class="table tabel-hover text-left" id=
+                        'recent_blocks'>
+                            <tr>
+                                <th class="text-left">Date/Time</th>
 
-                        <th class="text-left">Number</th>
+                                <th class="text-left">Number</th>
 
-                        <th class="text-left">Hash</th>
-                    </tr>
-                </table>
+                                <th class="text-left">Hash</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-</div>
-    </div><!-- /container -->
+    </div>
     <script type="text/javascript">
 
     $(document).ready(function() {
