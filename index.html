@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <link href="../../docs-assets/ico/favicon.png" rel="shortcut icon">
+
+    <title>Potato Pool (DOGE) - US East Node</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">    
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-dateFormat.min.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script src="js/exporting.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/charts.js"></script>
+</head>
+<!-- Static navbar -->
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Potato Pool</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Setup Guide</a></li>
+            <li class="dropdown">
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dogecoin<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">US East</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+<body class="text-center">
+    <div class="container">
+        <div class="page-header text-center">
+	    <img src="img/dogecoin-300.png" style="width:100px;height:100px;">
+            <h2>Dogecoin  - US East Node</h2><b><small>Updated: <span id='updated'></span></small></b>
+        </div><!-- Alerts -->
+
+        <div class="alert alert-danger hidden" id='node_alerts'></div>
+
+        <div class="alert alert-info hidden"></div>
+	
+        <div class='container'>
+	    <center>
+            <div class="btn-group text-center">
+                <button class="hashrate btn btn-primary" id='hour' type="button">Hour</button> <button class="hashrate btn btn-primary" id='day' type="button">Day</button> <button class="hashrate btn btn-primary" id='week' type="button">Week</button> <button class="hashrate btn btn-primary" id='month' type="button">Month</button> <button class="hashrate btn btn-primary" id='year' type="button">Year</button>
+            </div>
+	    </center>
+        </div><br>
+        <br>
+
+        <div id='chart'></div>
+        <hr>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    
+<div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Mining Status</h3>
+            </div>
+
+            <div class="panel-body">
+
+                        <p>Local Rate: <span id='local_rate'></span></p>
+
+                        <p>Global Rate: <span id='global_rate'></span></p>
+
+                        <p>Share Difficulty: <span id='share_difficulty'></span></p>
+
+                        <p>Shares: <span id='shares'></span></p>
+
+                        <p>Expected Time to Share: <span id='expected_time_to_share'></span></p>
+
+                        <p>Expected Time to Block: <span id='expected_time_to_block'></span></p>
+
+                        <p>Current Block Value: <span id='block_value'></span></p>
+                    </div></div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Node Status</h3>
+            </div>
+
+            <div class="panel-body">
+                        
+
+                        <p>Node Peers: <i class='fa fa-sign-in fa-fw'></i><span id='peers_in'></span> / <i class='fa fa-sign-out fa-fw'></i><span id='peers_out'></span></p>
+
+                        <p>Node Uptime: <span id='node_uptime'></span></p>
+
+                        <p>Node P2Pool Version: <span id='p2pool_version'></span></p>
+
+                        <p>Protocol Version: <span id='protocol_version'></span></p>
+
+                        <p>Node Fee: <span id='node_fee'></span></p>
+
+                        <p>Node Donation: <span id='node_donation'></span></p>
+<p>Wow Such Node: True</p>
+                    </div></div>
+                </div>
+            </div>
+        </div><br>
+        
+<div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Active Miners</h3>
+            </div>
+
+            <div class="panel-body">
+                <table class="table text-center" id='active_miners'>
+                    <tr>
+                        <th class="text-left">Bitcoin Address</th>
+
+                        <th class="text-left">Hashrate</th>
+
+                        <th class="text-left">DOA Hashrate</th>
+
+                        <th class="text-left">DOA %</th>
+
+                        <th class="text-left">Predicted payout</th>
+                    </tr>
+                </table>
+            </div>
+        </div><br>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Recent blocks</h3>
+            </div>
+
+            <div class="panel-body">
+                <table class="table tabel-hover text-left" id='recent_blocks'>
+                    <tr>
+                        <th class="text-left">Date/Time</th>
+
+                        <th class="text-left">Number</th>
+
+                        <th class="text-left">Hash</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+</div>
+    </div><!-- /container -->
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+      $(document).trigger('init');
+    });
+
+
+    var myself= [ ];
+
+    var currency, currency_info, rate, local_stats,
+        global_stats, current_payouts, recent_blocks;
+    var local_hashrate= 0, local_doa_hashrate= 0;
+
+    $('#hour.hashrate').click(function(e) {
+      fetchGraph('hour');
+    });
+    $('#day.hashrate').click(function(e) {
+      fetchGraph('day');
+    });
+    $('#week.hashrate').click(function(e) {
+      fetchGraph('week');
+    });
+    $('#month.hashrate').click(function(e) {
+      fetchGraph('month');
+    });
+    $('#year.hashrate').click(function(e) {
+      fetchGraph('year');
+    });
+
+    $(document).on('init', function(e, eventInfo) {
+      fetchdata(); fetchBlocks(); fetchGraph('day');
+    });
+
+    $(document).on('update', function(e, eventInfo) {
+      fetchdata();
+    });
+
+    $(document).on('update_miners', function(e, eventInfo) {
+      local_hashrate= 0; local_doa_hashrate= 0;
+      $.each(local_stats.miner_hash_rates, function(address, hashrate) {
+        tr= $('<tr/>').attr('id', address);
+
+        // highlight our miner if configured
+        if(myself && myself.length > 0 && $.inArray(address, myself) >= 0) {
+          tr.addClass('warning');
+        }
+
+        link_icon= $('<i/>').attr('class', 'fa fa-external-link fa-fw');
+        blockinfo= $('<a/>')
+          .attr('href', currency_info.address_explorer_url_prefix + address)
+          .attr('target', '_blank').append(link_icon);
+
+        doa= local_stats.miner_dead_hash_rates[address];
+        doa_prop= (parseFloat(doa) / parseFloat(hashrate)) * 100;
+
+        local_hashrate+= hashrate;
+        local_doa_hashrate+= doa;
+
+        tr.append($('<td/>').attr('class', 'text-left')
+          .html(address + '&nbsp;').append(blockinfo));
+        tr.append($('<td/>').attr('class', 'text-left')
+          .append(formatHashrate(hashrate)));
+        tr.append($('<td/>').attr('class', 'text-left')
+          .append(formatHashrate(doa)));
+        tr.append($('<td/>').attr('class', 'text-left')
+          .append(doa_prop.toFixed(2) + '%'));
+
+        payout= current_payouts[address];
+
+        if(payout) {
+          td= $('<td/>').attr('class', 'text-left')
+            .text(parseFloat(payout).toFixed(8))
+            .append(' ').append(currency.clone());
+          tr.append(td);
+        }
+        else {
+          tr.append($('<td/>').attr('class', 'text-left')
+            .append($('<i/>').append('no shares yet')));
+        }
+        $('#'+address).remove(); $('#active_miners').append(tr);
+      });
+
+      rate= formatHashrate(local_hashrate)
+        + ' (DOA '
+        + formatHashrate(local_doa_hashrate)
+        + ' / ' + ((local_doa_hashrate / local_hashrate) * 100).toFixed(2)
+        + '%)';
+      $('#local_rate').text(rate);
+
+      global_doa_rate= global_stats.pool_hash_rate - global_stats.pool_nonstale_hash_rate;
+      global_rate= formatHashrate(global_stats.pool_hash_rate)
+        + ' (DOA '
+        + formatHashrate(global_doa_rate)
+        + ' / ' + ((global_doa_rate / global_stats.pool_hash_rate) * 100).toFixed(2)
+        + '%)';
+      $('#global_rate').text(global_rate);
+
+      $('#share_difficulty')
+        .text(parseFloat(global_stats.min_difficulty).toFixed(2));
+
+      $('#block_value')
+        .text(parseFloat(local_stats.block_value).toFixed(8))
+        .append(' ').append(currency.clone());
+
+      $('#node_donation')
+        .text(local_stats.donation_proportion + '%');
+      $('#node_fee')
+        .text(local_stats.fee + '%');
+      $('#p2pool_version')
+        .text(local_stats.version);
+      $('#protocol_version')
+        .text(local_stats.protocol_version);
+
+      $('#peers_in').text(local_stats.peers.incoming);
+      $('#peers_out').text(local_stats.peers.outgoing);
+
+      $('#node_uptime').text(('' + local_stats.uptime).formatSeconds());
+
+      if(local_stats.warnings.length > 0) {
+        $('#node_alerts').empty();
+
+        $.each(local_stats.warnings, function(key, warning) {
+          $('#node_alerts').append($('<p/>').append(warning));
+        });
+
+        $('#node_alerts').fadeIn(1000, function() {
+          $(this).removeClass('hidden');
+        });
+      }
+      else {
+        if(!$('#node_alerts').hasClass('hidden'))
+          $('#node_alerts').fadeOut(1000, function() {
+            $(this).addClass('hidden');
+          });
+      }
+
+      $('#shares')
+        .text('Total: ' + local_stats.shares.total
+        + ' (Orphan: ' + local_stats.shares.orphan
+        + ', Dead: ' + local_stats.shares.dead + ')');
+
+      time_to_share= parseInt(local_stats.attempts_to_share) / parseInt(local_hashrate);
+      $('#expected_time_to_share').text((''+time_to_share).formatSeconds());
+      time_to_block= parseInt(local_stats.attempts_to_block) / parseInt(global_stats.pool_hash_rate);
+      $('#expected_time_to_block').text((''+time_to_block).formatSeconds());
+
+      $('#payout_now').html('&dash;');
+    });
+
+    // Fills the recent block table
+
+    $(document).on('update_blocks', function(e, eventInfo) {
+      $.each(recent_blocks, function(key, block) {
+        ts= block.ts; num= block.number; hash= block.hash;
+
+        // link to blockchain.info for the given hash
+        blockinfo= $('<a/>')
+          .attr('href', currency_info.block_explorer_url_prefix + hash)
+          .attr('target', '_blank').text(hash);
+
+        tr= $('<tr/>').attr('id', num);
+        tr.append($('<td/>').append($.format.prettyDate(new Date(ts * 1000))));
+        tr.append($('<td/>').append(num));
+        tr.append($('<td/>').append(blockinfo));
+        $('#recent_blocks').append(tr);
+      });
+    });
+
+    // Places the currency this node is mining in the page header.  If it's
+    // Bitcoin, use the fontawesome BTC icon.
+
+    var set_currency_symbol= true;
+    $(document).on('update_currency', function(e, eventInfo) {
+      if(currency_info.symbol === 'BTC') {
+        // use fontawesome BTC symbol
+        currency= $('<i/>').attr('class', 'fa fa-btc fa-fw');
+      }
+      else { currency= $('<span/>').append(currency_info.symbol); }
+
+      if(set_currency_symbol) {
+        $('#currency')
+          .append('(').append(currency).append(')');
+        set_currency_symbol= false;
+      }
+    });
+
+    // Updates the 'Updated:' field in page header
+
+    $(document).on('update_time', function(e, eventInfo) {
+      dts= $.format.date(new Date(), 'yyyy-MM-dd HH:mm:ss');
+      $('#updated').text(dts);
+    });
+
+    // ==================================================================
+
+    var fetchdata= function() {
+      $.getJSON('/rate', function(data) {
+        if(data) rate= data;
+
+        $.getJSON('/web/currency_info', function(data) {
+          currency_info= data;
+          $(document).trigger('update_currency');
+
+          $.getJSON('/local_stats', function(data) {
+            if(data) local_stats= data;
+
+            $.getJSON('/current_payouts', function(data) {
+              if(data) current_payouts= data;
+
+              $.getJSON('/global_stats', function(data) {
+                if(data) global_stats= data;
+                $(document).trigger('update_miners');
+                $(document).trigger('update_time');
+              });
+            });
+          });
+        });
+      });
+    };
+
+    var fetchBlocks= function() {
+      $.getJSON('/web/currency_info', function(data) {
+        currency_info= data;
+        $.getJSON('/recent_blocks', function(data) {
+          if(data) recent_blocks= data;
+          $(document).trigger('update_blocks');
+        });
+      });
+    }
+
+    var fetchGraph= function(interval) {
+      console.log(interval);
+      var graph_hashrate= [], graph_doa_hashrate= [];
+
+      $.getJSON('/web/graph_data/local_hash_rate/last_' + interval, function(data) {
+        $.each(data, function(key, value) {
+          el= []; el.push(parseInt(value[0]) * 1000,
+            parseFloat(value[1]));
+          graph_hashrate.push(el);
+        });
+        graph_hashrate.sort();
+        $.getJSON('/web/graph_data/local_dead_hash_rate/last_' + interval, function(data) {
+          $.each(data, function(key, value) {
+            el= []; el.push(parseInt(value[0]) * 1000,
+              parseFloat(value[1]));
+            graph_doa_hashrate.push(el);
+          });
+          graph_doa_hashrate.sort();
+          draw(graph_hashrate, graph_doa_hashrate);
+        })
+      })
+    }
+
+
+    setInterval(function() {
+      $(document).trigger('update');
+    }, 10 * 1000);
+
+    </script>
+</body>
+</html>
