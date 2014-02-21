@@ -24,30 +24,36 @@
 
 <body>
     <!-- Static navbar -->
-
-    <div class="navbar navbar-inverse navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span></button> <a class="navbar-brand" href="#">VTCmine</a>
-            </div>
-
-            <div class="navbar-collapse collapse">
-                <!--  <ul class="nav navbar-nav">
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Setup Guide</a></li>
+    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://www.vtcmine.com">VTCmine</a>
+        </div>
+        <div class="navbar-collapse collapse">
+         <ul class="nav navbar-nav">
+            <li class="active"><a href="http://www.vtcmine.com">Home</a></li>
+            <li><a href="http://www.vtcmine.com/about.html">About</a></li>
+            <li><a href="http://www.vtcmine.com/setup.html">Setup</a></li>
             <li class="dropdown">
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown active">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vertcoin<b class="caret"></b></a>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nodes<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">US East</a></li>
+                <li><a href="http://107.170.46.7:9171">US East</a></li>
+                <li class="disabled"><a href="#">US West</a></li>
+                <li class="disabled"><a href="#">Europe</a></li>
               </ul>
             </li>
-          </ul> -->
-            </div><!--/.nav-collapse -->
-        </div>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
     </div>
 
     <div class="container">
@@ -134,7 +140,7 @@
             <div class="col-lg-4">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center">
-                        <h3 class="panel-title">EU (Amsterdam)</h3>
+                        <h3 class="panel-title">Europe (Amsterdam)</h3>
                     </div>
 
                     <div class="panel-body">
@@ -158,7 +164,7 @@
                             </tr>
                         </table>
                         <hr>
-                        <p class="text-center"><a href="#"><button class="hashrate btn disabled btn-success" id='hour' type="button">Pool Statistics</button></p></a>
+                        <p class="text-center"><a href="#"><button class="hashrate btn disabled btn-success" id='hour' type="button">Node Statistics</button></p></a>
                     </div>
                 </div>
             </div>
